@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeeoma Luxury – Website Improvement Proposal</title>
+    
+    <!-- Google Fonts for Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --primary-gold: #D4AF37;
+            --primary-gold-dark: #B4941F;
+            --text-dark: #1A1A1A;
+            --text-grey: #555555;
+            --bg-light: #F9F9F7;
+            --bg-white: #FFFFFF;
+            --border-color: #E0E0E0;
+            --spacing-unit: 1.5rem;
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- Layout Containers --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        .section-padding {
+            padding: 4rem 0;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        .logo span {
+            color: var(--primary-gold);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-grey);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-gold);
+        }
+
+        .cta-button-small {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--text-dark);
+            color: white;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button-small:hover {
+            background-color: var(--primary-gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://cdn.shopify.com/s/files/1/0569/2014/5954/files/Kloc_logo_formats_-02_1.jpg?v=1768305868');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-weight: 300;
+        }
+
+        /* --- Section Titles --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title .divider {
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            margin: 0 auto;
+        }
+
+        /* --- Audit Cards Grid --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .audit-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .audit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-gold);
+        }
+
+        .card-header {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            color: white;
+            font-weight: 600;
+            font-family: 'Lato', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-icon {
+            color: var(--primary-gold);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .issue-box {
+            background-color: #FFF5F5;
+            border-left: 4px solid #E53E3E;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .issue-title {
+            font-weight: 700;
+            color: #C53030;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .solution-box {
+            background-color: #F0FFF4;
+            border-left: 4px solid #38A169;
+            padding: 1rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .solution-title {
+            font-weight: 700;
+            color: #2F855A;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-grey);
+        }
+
+        .card-list li::before {
+            content: "•";
+            color: var(--primary-gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .inspiration-tag {
+            display: inline-block;
+            background-color: #EDF2F7;
+            color: #4A5568;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+            font-family: monospace;
+        }
+
+        .visual-mockup {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        /* --- Specific Section Styles --- */
+        .comparison-section {
+            background-color: var(--bg-white);
+        }
+
+        .brand-highlight {
+            border-top: 4px solid var(--primary-gold);
+        }
+
+        /* --- Trust Section --- */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .trust-content ul li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .trust-content ul li svg {
+            margin-right: 15px;
+            color: var(--primary-gold);
+            width: 24px;
+            height: 24px;
+        }
+
+        .competitor-box {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        /* --- Why It Matters --- */
+        .benefits-section {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+        }
+        
+        .benefits-section h2 {
+            color: white;
+        }
+
+        .benefits-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            flex: 1 1 200px;
+            max-width: 300px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-gold);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #111;
+            color: #888;
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* --- Mobile Nav --- */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 1rem 0;
+            }
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">ZEEOMA <span>LUXURY</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home-page">Home Page</a></li>
+                    <li><a href="#collection-page">Collection</a></li>
+                    <li><a href="#product-page">Product Page</a></li>
+                    <li><a href="#brand-pages">Brand Pages</a></li>
+                    <li><a href="#trust-credibility">Trust</a></li>
+                </ul>
+            </nav>
+            <a href="#next-steps" class="cta-button-small">Confirm Scope</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Website Improvement Proposal</h1>
+            <p>Restructuring and upgrading <strong>zeeomaluxury.com</strong> to improve visual quality, usability, trust, and conversion rates while preserving your brand identity.</p>
+        </div>
+    </section>
+
+    <!-- 1. Home Page Improvements -->
+    <section id="home-page" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>1. Home Page Improvements</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid-layout">
+                
+                <!-- Menu Card -->
+                <article class="audit-card">
+                    <div class="card-header">
+                        <h3>Menu & Navigation</h3>
+                        <svg class="card-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Low visibility and unclear hierarchy. Colors lack contrast.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Restructure for better hierarchy</li>
+                                <li>Improve color contrast</li>
+                                <li>Add top menu & bottom slider</li>
+                            </ul>
+                        </div>
+                        <div style="margin-top:1rem;">
+                            <span class="inspiration-tag">Inspiration: lierre.ca</span>
+                            <span class="inspiration-tag">geekaybikes.com</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Hero Slider Card -->
+                <article class="audit-card">
+                    <div class="card-header">
+                        <h3>Hero Slider</h3>
+                        <svg class="card-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Images getting cropped, video looks blurry on different screens.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Fix image cropping logic</li>
+                                <li>Improve video clarity</li>
+                                <li>Ensure responsiveness & sharpness</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- New Arrivals & Featured -->
+                <article class="audit-card">
+                    <div class="card-header">
+                        <h3>New Arrivals & Featured</h3>
+                        <svg class="card-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Too much spacing, poor alignment. Missing product discovery features.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Restructure layout for alignment</li>
+                                <li>Add "Featured Products" section</li>
+                                <li>Add "View All Products" CTA</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Articles Section -->
+                <article class="audit-card">
+                    <div class="card-header">
+                        <h3>Articles Section</h3>
+                        <svg class="card-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path></svg>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Only 2 articles shown (looks unbalanced).</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Add 2-3 more articles</li>
+                                <li>Improve font size & colors</li>
+                                <li>Ensure visual consistency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Shop by Category & Footer -->
+                <article class="audit-card">
+                    <div class="card-header">
+                        <h3>Category & Footer</h3>
+                        <svg class="card-icon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Ineffective category area. Footer has excessive empty space.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>"Shop by Category" with clickable images</li>
+                                <li>Move payment icons, add links</li>
+                                <li>Reduce spacing in footer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Collection & 3. Product Page -->
+    <section id="collection-page" class="section-padding" style="background-color: var(--bg-white);">
+        <div class="container">
+            <div class="section-title">
+                <h2>2. Collection & 3. Product Page</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid-layout">
+                <!-- Collection Page -->
+                <article class="audit-card">
+                    <img src="https://cdn.shopify.com/s/files/1/0569/2014/5954/files/Screenshot_17.png?v=1768306014" alt="Collection Grid Mockup" class="visual-mockup">
+                    <div class="card-header">
+                        <h3>Collection Page</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Product cards too small, layout looks crowded, filters weak.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Redesign product grid for visibility</li>
+                                <li>Add collection banners</li>
+                                <li>Standardize fonts & colors</li>
+                                <li>Improve Filter UI & Infinite Scroll</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product Page -->
+                <article class="audit-card">
+                    <img src="https://cdn.shopify.com/s/files/1/0569/2014/5954/files/Screenshot_18.png?v=1768306100" alt="Product Detail Mockup" class="visual-mockup">
+                    <div class="card-header">
+                        <h3>Product Page</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="issue-box">
+                            <span class="issue-title">Current Issue</span>
+                            <p>Inconsistent font colors, text formatting, and spacing.</p>
+                        </div>
+                        <div class="solution-box">
+                            <span class="solution-title">Proposed Solution</span>
+                            <ul class="card-list">
+                                <li>Standardize typography completely</li>
+                                <li>Fix alignment</li>
+                                <li>Create cleaner, premium layout aligned with brand</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Internal Brand Pages -->
+    <section id="brand-pages" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>4. Internal Brand Pages</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="grid-layout">
+                
+                <!-- Ako Africa -->
+                <article class="audit-card brand-highlight">
+                    <div class="card-header" style="background-color: #333;">
+                        <h3>Featured Designers – Ako Africa</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="solution-box">
+                            <span class="solution-title">Action Plan</span>
+                            <ul class="card-list">
+                                <li>Add dedicated banner</li>
+                                <li>Fix background color issues</li>
+                                <li>Standardize fonts & layout</li>
+                                <li>Improve visual consistency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Gift Boxes -->
+                <article class="audit-card brand-highlight">
+                    <div class="card-header" style="background-color: #333;">
+                        <h3>Gift Boxes</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="solution-box">
+                            <span class="solution-title">Action Plan</span>
+                            <ul class="card-list">
+                                <li>Redesign layout completely</li>
+                                <li>Split: Text Left / Products Right</li>
+                                <li>Improve font consistency & spacing</li>
+                                <li>Focus on conversion optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Ladymaker -->
+                <article class="audit-card brand-highlight" style="grid-column: 1 / -1;">
+                    <div class="card-header" style="background-color: var(--text-dark);">
+                        <h3>Featured Ladymaker</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+                            <div style="flex: 1; min-width: 300px;">
+                                <div class="solution-box">
+                                    <span class="solution-title">Recommendation</span>
+                                    <p>Redesign this page using a premium editorial layout.</p>
+                                </div>
+                                <a href="https://arjunkhanna.com/pages/akog" target="_blank" style="display: inline-block; margin-top: 1rem; color: var(--primary-gold-dark); font-weight: bold;">View Reference Inspiration &rarr;</a>
+                            </div>
+                            <div style="flex: 1; min-width: 300px;">
+                                <img src="https://picsum.photos/seed/editorial/600/350" alt="Editorial Layout Inspiration" style="border-radius: 4px; box-shadow: var(--shadow-soft);">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Trust & Credibility -->
+    <section id="trust-credibility" class="section-padding" style="background-color: var(--bg-white);">
+        <div class="container">
+            <div class="section-title">
+                <h2>5. Trust & Credibility Improvements</h2>
+                <div class="divider"></div>
+                <p style="margin-top: 1rem; color: var(--text-grey);">Comparative analysis against <strong>Kilentar</strong> and <strong>ShopKhoi</strong></p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-content">
+                    <h3 style="margin-bottom: 1.5rem;">Gap Analysis</h3>
+                    <p style="margin-bottom: 2rem;">Zeeoma Luxury currently lacks visible trust signals. We recommend adding the following to directly improve customer confidence:</p>
+                    
+                    <ul>
+                        <li>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Make Return & Refund policies highly visible
+                        </li>
+                        <li>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                            Add Trust Badges & Payment Logos
+                        </li>
+                        <li>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Improve Legal & Contact info visibility
+                        </li>
+                        <li>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                            Highlight Brand Authority indicators
+                        </li>
+                    </ul>
+                </div>
+                <div class="competitor-box">
+                    <h4 style="text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Competitor Benchmarks</h4>
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="flex:1; background: white; padding: 1rem; border: 1px solid #ddd; text-align: center; border-radius: 4px;">
+                            <strong>Kilentar</strong>
+                            <div style="font-size: 0.8rem; color: #888;">Trust Signals</div>
+                        </div>
+                        <div style="flex:1; background: white; padding: 1rem; border: 1px solid #ddd; text-align: center; border-radius: 4px;">
+                            <strong>ShopKhoi</strong>
+                            <div style="font-size: 0.8rem; color: #888;">Authority Layout</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; font-style: italic;">
+                        "Changes based on this comparison directly impact conversion rates by reducing user anxiety at checkout."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why These Changes Matter -->
+    <section class="section-padding benefits-section">
+        <div class="container">
+            <h2>✅ Why These Changes Matter</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">♕</div>
+                    <h4>Premium Look</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Make Zeeoma Luxury look professional and high-end.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🧭</div>
+                    <h4>Better Navigation</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Improve product discovery and user flow.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🛡️</div>
+                    <h4>Customer Trust</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Build confidence through clear policies and branding.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📈</div>
+                    <h4>Higher Conversions</h4>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">Directly support sales growth through UX optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps / Footer -->
+    <section id="next-steps" class="section-padding" style="text-align: center; background-color: var(--bg-white);">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">Ready to Proceed?</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-grey);">Once you confirm these changes, we will finalize the scope, ETA, and development timeline.</p>
+           
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="color: white; margin-bottom: 1rem;">ZEEOMA <span>LUXURY</span></div>
+            <p>&copy; 2026 Zeeoma Luxury Improvement Proposal. Confidential.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
